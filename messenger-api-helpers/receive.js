@@ -1,5 +1,6 @@
 // ===== MODULES ===============================================================
 import sendApi from './send';
+import logger from './fba-logging';
 
 /**
  * handleReceiveMessage - Message Event called when a message is sent to
@@ -40,7 +41,8 @@ const handleReceivePostback = function(event) {
 **/
 const handleReceiveReferral = function(event) {
     const senderId = event.sender.id;
-    console.log("WE ARE HERE REFERRAL ACTION")
+    console.log("REFERRAL ACTION");
+    logger.fbLog("referral", payload, senderId);
 };
 
 export default {

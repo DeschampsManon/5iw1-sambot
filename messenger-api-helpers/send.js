@@ -4,6 +4,7 @@ import castArray from 'lodash/castArray';
 // ===== MESSENGER =============================================================
 import api from './api';
 import messages from './messages';
+import logger from './fba-logging';
 
 // Turns typing indicator on.
 const typingOn = function(recipientId) {
@@ -64,6 +65,7 @@ const sendReadReceipt = function(recipientId) {
  * Send the initial message telling the user about how we can help him.
 **/
 const sendHelloRewardMessage = function(recipientId) {
+    logger.fbLog("send_message", {payload: "hello_reward"}, recipientId);
     sendMessage(recipientId, messages.helloRewardMessage);
 };
 

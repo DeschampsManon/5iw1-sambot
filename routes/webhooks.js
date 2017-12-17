@@ -3,6 +3,7 @@ import express from 'express';
 
 // ===== MESSENGER =============================================================
 import receiveApi from '../messenger-api-helpers/receive';
+import logger from '../messenger-api-helpers/fba-logging';
 
 const router = express.Router();
 
