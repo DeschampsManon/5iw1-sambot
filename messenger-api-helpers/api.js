@@ -46,10 +46,7 @@ const callAPI = function(endPoint, messageDataArray, queryParams = {}, retries =
     }, function(error, response, body) {
         if (!error && response.statusCode === 200) {
             // Message has been successfully received by Facebook.
-            console.log(
-                `Successfully sent message to ${endPoint} endpoint: `,
-                JSON.stringify(body)
-            );
+            console.log( `Successfully sent message to ${endPoint} endpoint: `);
             // Continue sending payloads until queue empty.
             if (!isEmpty(queue)) {
                 callAPI(endPoint, queue, queryParams);
@@ -71,18 +68,14 @@ const callAPI = function(endPoint, messageDataArray, queryParams = {}, retries =
 };
 
 const callMessagesAPI = function(messageDataArray, queryParams = {}) {
-    console.log("ERROR IS HERE !!!")
-    console.log(messageDataArray)
-    console.log(queryParams)
     return callAPI('messages', messageDataArray, queryParams);
 };
 
 const callThreadAPI = function(messageDataArray, queryParams = {}) {
-    console.log(queryParams);
     return callAPI('thread_settings', messageDataArray, queryParams);
 };
 
 export default {
     callMessagesAPI,
-    callThreadAPI,
+    callThreadAPI
 };

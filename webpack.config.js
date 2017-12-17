@@ -6,7 +6,7 @@ module.exports = [{
     context: path.join(__dirname),
     entry: 'index',
     output: {
-        path: path.join(__dirname, 'public'),
+    path: path.join(__dirname, 'public'),
         filename: 'bundle.js'
     },
     module: {
@@ -22,16 +22,15 @@ module.exports = [{
     resolve: {
         extensions: ['.js', '.jsx'],
         modules: [
-            path.join(__dirname, 'client'),
-            'node_modules'
+            path.join(__dirname, 'client'),'node_modules'
         ]
     },
     plugins: [
-        new webpack.DefinePlugin({
-            'process.env': {
-                APP_ID: JSON.stringify(process.env.FB_APP_ID),
-                PAGE_ID: JSON.stringify(process.env.FB_PAGE_ID),
-            },
-        })
+    new webpack.DefinePlugin({
+        'process.env': {
+            APP_ID: JSON.stringify(process.env.APP_ID),
+            PAGE_ID: JSON.stringify(process.env.PAGE_ID),
+        },
+    })
     ]
 }];

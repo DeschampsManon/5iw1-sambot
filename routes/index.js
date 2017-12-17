@@ -1,11 +1,11 @@
 // ===== MODULES ===============================================================
-const
-    express = require('express'),
-    router = express.Router();
+import express from 'express';
+
+const router = express.Router();
 
 // GET home page for the application
-router.get('/', function(_, res) {
-    res.render('./index', {});
+router.get('/', (_, res) => {
+  res.render('./index', {demo: process.env.DEMO, title: 'Gift Preferences'});
 });
 
 export default router;

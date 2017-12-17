@@ -5,7 +5,7 @@ const SERVER_URL = process.env.SERVER_URL;
  */
 const setPreferencesButton = {
     type: 'web_url',
-    title: 'update my preferences',
+    title: 'update preferences',
     url: `${SERVER_URL}/`,
     webview_height_ratio: 'tall',
     messenger_extensions: true,
@@ -25,6 +25,34 @@ const helloRewardMessage = {
     },
 };
 
+/**
+ * The persistent menu for users to use.
+**/
+const persistentMenu = {
+    setting_type: 'call_to_actions',
+    thread_state: 'existing_thread',
+    call_to_actions: [
+        setPreferencesButton,
+    ],
+};
+
+/**
+ * The Get Started button.
+ */
+const getStarted = {
+    setting_type: 'call_to_actions',
+    thread_state: 'new_thread',
+    call_to_actions: [
+        {
+            payload: JSON.stringify({
+                type: 'GET_STARTED',
+            }),
+        },
+    ],
+};
+
 export default {
     helloRewardMessage,
+    persistentMenu,
+    getStarted,
 };

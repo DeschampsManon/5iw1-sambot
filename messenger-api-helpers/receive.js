@@ -15,6 +15,36 @@ const handleReceiveMessage = function(event) {
     }
 };
 
+/**
+ * handleReceivePostback — Postback event handler triggered by a postback
+ * action we specify on a button in a template.
+**/
+
+const handleReceivePostback = function(event) {
+    const {type, data} = JSON.parse(event.postback.payload);
+    const senderId = event.sender.id;
+    // perform an action based on the type of payload received
+    switch (type) {
+        case 'GET_STARTED':
+            sendApi.sendHelloRewardMessage(senderId);
+            break;
+        default:
+            console.error(`Unknown Postback called: ${type}`);
+            break;
+    }
+};
+
+/**
+ * handleReceiveReferral - Message Event called when a referral event is sent to
+ * our page.
+**/
+const handleReceiveReferral = function(event) {
+    const senderId = event.sender.id;
+    console.log("WE ARE HERE REFERRAL ACTION")
+};
+
 export default {
     handleReceiveMessage,
+    handleReceivePostback,
+    handleReceiveReferral
 };

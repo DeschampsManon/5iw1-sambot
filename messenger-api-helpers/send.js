@@ -6,7 +6,7 @@ import api from './api';
 import messages from './messages';
 
 // Turns typing indicator on.
-const typingOn = (recipientId) => {
+const typingOn = function(recipientId) {
     return {
         recipient: {
             id: recipientId,
@@ -16,7 +16,7 @@ const typingOn = (recipientId) => {
 };
 
 // Turns typing indicator off.
-const typingOff = (recipientId) => {
+const typingOff = function(recipientId) {
     return {
         recipient: {
             id: recipientId,

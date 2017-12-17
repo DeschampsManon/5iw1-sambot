@@ -21,27 +21,26 @@ router.get('/', function(req, res) {
  * receive all interactions from the users of you Messenger Application.
 **/
 router.post('/', function(req, res) {
-    res.sendStatus(200);
-    const data = req.body;
-    // Make sure this is a page subscription
-    if (data.object === 'page') {
+  res.sendStatus(200);
+  const data = req.body;
+  // Make sure this is a page subscription
+  if (data.object === 'page') {
     // Iterate over each entry
-        data.entry.forEach(function(pageEntry) {
-            // Iterate over each messaging event and handle accordingly
-            pageEntry.messaging.forEach(function(messagingEvent) {
-                console.log({messagingEvent});
-                if (messagingEvent.message) {
-                    receiveApi.handleReceiveMessage(messagingEvent);
-                } else if (messagingEvent.postback) {
-                    //receiveApi.handleReceivePostback(messagingEvent);
-                } else if (messagingEvent.referral) {
-                    //receiveApi.handleReceiveReferral(messagingEvent);
-                } else {
-                    console.log('Webhook received unknown messagingEvent: ', messagingEvent);
-                }
-            });
-        });
-    }
+    data.entry.forEach(function(pageEntry) {
+      // Iterate over each messaging event and handle accordingly
+      pageEntry.messaging.forEach(function(messagingEvent) { 
+        if (messagingEvent.message) {
+            receiveApi.handleReceiveMessage(messagingEvent);
+        } else if (messagingEvent.postback) {
+            receiveApi.handleReceivePostback(messagingEvent);
+        } else if (messagingEvent.referral) {
+            receiveApi.handleReceiveReferral(messagingEvent);
+        } else {
+            console.log('Webhook received unknown messagingEvent: ', messagingEvent);
+        }
+      });
+    });
+  }
 });
 
 export default router;
